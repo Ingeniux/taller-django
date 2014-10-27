@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog | {{title}}</title>
+</head>
+<body>
+<h1>Blog</h1>
+
+{% if not user.is_authenticated %}
+	<form action="{% url 'usuarios:login' %}" method="POST">{%csrf_token%}
+		{{ auth_form.as_ul }}
+		<input type="submit" name="" value="Login" placeholder="">
+	</form>
+	
+	<h2>Registro</h2>
+	<form action="{% url 'usuarios:registro' %}" method="post" accept-charset="utf-8"> {% csrf_token %}
+		{{reg_form.as_ul}}
+		<input type="submit" name="" value="Crear" placeholder="">
+</form>	
+
+{% else %}
+	<header id="header" class="">
+		<span>{{user.first_name}} {{user.last_name}} ({{user.username}})</span>
+		<a href="{% url 'usuarios:logout' %}" title="logout">Logout</a>
+	</header><!-- /header -->
+{% endif %}	
+{%block contenido%}{%endblock%}
+<footer>
+	Univalle Sede Tuluá
+</footer>
+</body>
+</html>
