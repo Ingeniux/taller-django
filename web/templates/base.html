@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Blog | {{title}}</title>
+<link rel="stylesheet" href="{{STATIC_URL}}foundation.css">
+
 </head>
 <body>
 <h1>Blog</h1>
@@ -11,19 +13,19 @@
 		{{ auth_form.as_ul }}
 		<input type="submit" name="" value="Login" placeholder="">
 	</form>
-	
+
 	<h2>Registro</h2>
 	<form action="{% url 'usuarios:registro' %}" method="post" accept-charset="utf-8"> {% csrf_token %}
 		{{reg_form.as_ul}}
 		<input type="submit" name="" value="Crear" placeholder="">
-</form>	
+</form>
 
 {% else %}
 	<header id="header" class="">
 		<span>{{user.first_name}} {{user.last_name}} ({{user.username}})</span>
 		<a href="{% url 'usuarios:logout' %}" title="logout">Logout</a>
 	</header><!-- /header -->
-{% endif %}	
+{% endif %}
 {%block contenido%}{%endblock%}
 <footer>
 	Univalle Sede Tuluá
