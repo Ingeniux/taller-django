@@ -1,34 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="es">
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Blog | {{title}}</title>
-<link rel="stylesheet" href="{{STATIC_URL}}foundation.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}normalize.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}foundation.min.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}app.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css"/>
 
 </head>
 <body>
-<h1>Blog</h1>
 
-{% if not user.is_authenticated %}
-	<form action="{% url 'usuarios:login' %}" method="POST">{%csrf_token%}
-		{{ auth_form.as_ul }}
-		<input type="submit" name="" value="Login" placeholder="">
-	</form>
 
-	<h2>Registro</h2>
-	<form action="{% url 'usuarios:registro' %}" method="post" accept-charset="utf-8"> {% csrf_token %}
-		{{reg_form.as_ul}}
-		<input type="submit" name="" value="Crear" placeholder="">
-</form>
+	{% if not user.is_authenticated %}
+		<div class="row">
+		<div class="large-6 columns">
+			<h1>Blog</h1>
+		</div>
 
-{% else %}
-	<header id="header" class="">
-		<span>{{user.first_name}} {{user.last_name}} ({{user.username}})</span>
-		<a href="{% url 'usuarios:logout' %}" title="logout">Logout</a>
-	</header><!-- /header -->
-{% endif %}
-{%block contenido%}{%endblock%}
-<footer>
-	Univalle Sede Tuluá
-</footer>
+		<div class="large-4 columns">
+
+			<h2>Login</h2>
+			<form action="{% url 'usuarios:login' %}" method="POST">{%csrf_token%}
+				{{ auth_form.as_ul }}
+				<input type="submit" name="" value="Login" placeholder="">
+			</form>
+
+
+			<h2>Registro</h2>
+			<form action="{% url 'usuarios:registro' %}" method="post" accept-charset="utf-8"> {% csrf_token %}
+				{{reg_form.as_ul}}
+				<input type="submit" name="" value="Crear" placeholder="">
+			</form>
+
+
+		</div>
+		</div>
+	{% else %}
+			 <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+            </li>
+        </ul>
+					<section class="top-bar-section">
+							<ul class="left">
+                <li><a href=""><i class="fa-normal fa  fa-home"></i>Inicio</a></li>
+                <li><a href=""><i class="fa-normal fa  fa-bell"></i>Notificaciones</a></li>
+                <li><a href=""><i class="fa-normal fa  fa-envelope"></i>Mensajes</a></li>
+							</ul>
+							<ul class="right">
+               <li>
+    							<a href="#" class="" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" >
+                      <img class="perfil" src="http://placehold.it/40/40"/>
+                    </a>
+                   <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+
+
+												<li><a href="#"><strong>{{user.first_name}} {{user.last_name}} ({{user.username}})</strong></a></li>
+                        <li><a href="{% url 'usuarios:logout' %}" title="logout">Logout</a></li>
+
+
+										</ul>
+              </li>
+            <li class="has-form">
+               <a href="#" data-reveal-id="modalTweet" class="button radius tiny">
+                   <i class="fa-normal fa fa-pencil  "></i>Twittear
+                </a>
+              </li>
+            </ul>
+        </section>
+			</nav>
+		{% endif %}
+
+	{%block contenido%}{%endblock%}
+
+
+
+	<script src="{{STATIC_URL}}jquery.js"></script>
+  <script src="{{STATIC_URL}}foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+
+	<footer>
+		Univalle Sede Tuluá
+	</footer>
 </body>
 </html>
