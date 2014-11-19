@@ -16,9 +16,9 @@ def guardar_post(request):
 	if request.POST:
 		form = PostForm(request.POST)
 		if form.is_valid:
-			usuario = request.user
-			form.usuario = request.user
-			form.save(instance=usuario)
+			post = form.save(commit= False)
+			post.usuario = request.user
+			post.save()
 			return HttpResponseRedirect(reverse('web:index'))
 	else:
 		return HttpResponseRedirect(reverse('web:index'))

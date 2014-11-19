@@ -80,16 +80,26 @@
 
 	        <form action="{% url 'posts:savepost' %}" method="post" accept-charset="utf-8">{% csrf_token %}
 	            <input id="id_contenido" name="contenido" type="text" class="form-control status-box" placeholder="What's on your mind?" >
-	        		<input type="submit" name="" value="Crear" placeholder="">
+	        		<input class="button radius right tiny tuit" type="submit" name="" value="Twittear" placeholder="">
 					</form>
 
-	        <a class="button radius right tiny tuit">
-	            <i class="fa-normal fa fa-pencil  "></i>Twittear
-	        </a>
-					<span class="counter right">140</span>
+	        <span class="counter right">140</span>
 	        <a class="close-reveal-modal">&#215;</a>
     	</div>
 			<!--fin modal para el "tweet"-->
+
+		<ul>
+			{% for item in posts%}
+			<li>
+
+
+			{{item.contenido}}
+			{{item.fecha}}
+			{{item.usuario}}
+			{%endfor%}
+		</li>
+		</ul>
+
 		{% endif %}
 
 	{%block contenido%}{%endblock%}
