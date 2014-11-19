@@ -14,11 +14,15 @@ from posts.forms import PostForm
 def guardar_post(request):
 
 	if request.POST:
+
 		form = PostForm(request.POST)
+
 		if form.is_valid:
-			post = form.save(commit= False)
-			post.usuario = request.user
-			post.save()
+
+			post = form.save(commit = False) #todavia no guardes la publicacion! me falta un dato . .
+			post.usuario = request.user # le damos al post el id del usuario actual (FK)
+			post.save() # ahora si guardo la publicacion
+
 			return HttpResponseRedirect(reverse('web:index'))
 	else:
 		return HttpResponseRedirect(reverse('web:index'))

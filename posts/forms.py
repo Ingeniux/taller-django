@@ -7,4 +7,4 @@ class PostForm(ModelForm):
 
     class Meta:
         model = Post
-        exclude = ('usuario',)
+        exclude = ('usuario',) # excluyo de la forma el campo 'usuario', solo recibo el texto de la publicacion
