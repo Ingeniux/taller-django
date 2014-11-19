@@ -30,22 +30,27 @@
 					<h2>Login</h2>
 
 					<form action="{% url 'usuarios:login' %}" method="POST">{%csrf_token%}
+							<ul>
+
 
 							{{ auth_form.as_ul }}
 
-							<input class="button" type="submit" name="" value="Login" placeholder="">
+							<input class="button" type="submit" name="" value="Ingresar" placeholder="">
 
+						</ul>
 					</form>
 
 
 					<h2>Registro</h2>
 
 					<form action="{% url 'usuarios:registro' %}" method="post" accept-charset="utf-8"> {% csrf_token %}
+							<ul>
+
 
 							{{reg_form.as_ul}}
 
 							<input class="button" type="submit" name="" value="Registrar" placeholder="">
-
+							</ul>
 					</form>
 
 				</div>
@@ -61,11 +66,11 @@
 						<ul>
 								<li>
 
-									<h6>Publicar un Nuevo Tweet</h6>
+									<h6>Publicar Algo</h6>
 
 										<form action="{% url 'posts:savepost' %}" method="post" accept-charset="utf-8">{% csrf_token %}
-												<input id="id_contenido" name="contenido" type="text" class="form-control status-box" placeholder="What's on your mind?" >
-												<input class="button radius right tiny tuit" type="submit" name="" value="Twittear" placeholder="">
+												<input id="id_contenido" name="contenido" type="text" class="form-control status-box" placeholder="Que pasa por tu mente?" >
+												<input class="button radius right tiny tuit" type="submit" name="" value="Publicar" placeholder="">
 										</form>
 
 								</li>
@@ -74,13 +79,12 @@
 								<li><a href=""></i>Inicio</a></li>
                 <li><a href="#"><strong>{{user.first_name}} {{user.last_name}} ({{user.username}})</strong></a></li>
                 <li><a href="{% url 'usuarios:logout' %}" title="logout">Cerrar Sesion</a></li>
-
+								<li>Universidad del Valle sede Tulua</li>
 						</ul>
 
         </div>
 
-			<!--modal para el "tweet"-->
-					<div class="six columns">
+				<div class="six columns">
 
 								<ul>
 									{% for item in posts%}
@@ -96,25 +100,13 @@
 
 
     			</div>
-			</div>
-			<!--fin modal para el "tweet"-->
+				</div>
+
 
 
 		{% endif %}
 
 	{%block contenido%}{%endblock%}
 
-
-
-	<script src="{{STATIC_URL}}jquery.js"></script>
-  <script src="{{STATIC_URL}}foundation.min.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
-
-
-	<footer>
-		Univalle Sede Tuluá
-	</footer>
 </body>
 </html>
