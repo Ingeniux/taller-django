@@ -6,6 +6,10 @@ form li
 {
 text-decoration:none;
 }
+.help-text
+{
+font-size:0.9em;
+}
 .top-bar
 {
 background: #fff;

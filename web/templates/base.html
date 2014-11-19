@@ -18,7 +18,7 @@
 
 		<div class="row">
 		<div class="large-6 columns">
-			<h1>Blog</h1>
+			<h1>MicroBlog</h1>
 		</div>
 
 		<div class="large-4 columns">
@@ -26,21 +26,23 @@
 			<h2>Login</h2>
 			<form action="{% url 'usuarios:login' %}" method="POST">{%csrf_token%}
 				{{ auth_form.as_ul }}
-				<input type="submit" name="" value="Login" placeholder="">
+				<input class="button tiny" type="submit" name="" value="Login" placeholder="">
 			</form>
 
 
 			<h2>Registro</h2>
 			<form action="{% url 'usuarios:registro' %}" method="post" accept-charset="utf-8"> {% csrf_token %}
 				{{reg_form.as_ul}}
-				<input type="submit" name="" value="Crear" placeholder="">
+				<input class="button tiny" type="submit" name="" value="Registrar" placeholder="">
 			</form>
 
 
 		</div>
 		</div>
+
 	{% else %}
-			 <nav class="top-bar" data-topbar role="navigation">
+
+			<nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name">
             </li>
@@ -72,6 +74,22 @@
             </ul>
         </section>
 			</nav>
+			<!--modal para el "tweet"-->
+			<div id="modalTweet" class="small reveal-modal" data-reveal>
+				<h6 style="vertical-align:center;">Publicar un Nuevo Tweet</h6>
+
+	        <form action="{% url 'posts:savepost' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+	            <input id="id_contenido" name="contenido" type="text" class="form-control status-box" placeholder="What's on your mind?" >
+	        		<input type="submit" name="" value="Crear" placeholder="">
+					</form>
+
+	        <a class="button radius right tiny tuit">
+	            <i class="fa-normal fa fa-pencil  "></i>Twittear
+	        </a>
+					<span class="counter right">140</span>
+	        <a class="close-reveal-modal">&#215;</a>
+    	</div>
+			<!--fin modal para el "tweet"-->
 		{% endif %}
 
 	{%block contenido%}{%endblock%}

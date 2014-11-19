@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 class UserForm(ModelForm):
-	password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+	password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'contrasena'}))
 	password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput, help_text='Lo mas larga posible')
 
 	class Meta:
