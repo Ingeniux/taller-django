@@ -78,7 +78,7 @@
 
 										<form action="{% url 'posts:savepost' %}" method="post" accept-charset="utf-8">{% csrf_token %}
 
-												<input id="id_contenido" name="contenido" type="text" class="form-control status-box" placeholder="Que pasa por tu mente?" >
+												<input name="contenido" type="text" class="form-control status-box" placeholder="Que pasa por tu mente?" >
 
 												<input class="button radius right tiny tuit" type="submit" name="" value="Publicar" placeholder="">
 

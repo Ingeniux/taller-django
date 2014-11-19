@@ -20,7 +20,7 @@ def guardar_post(request):
 		if form.is_valid:
 
 			post = form.save(commit = False) #todavia no guardes la publicacion! me falta un dato . .
-			post.usuario = request.user # le damos al post el id del usuario actual (FK)
+			post.usuario = request.user # le damos a la publicacion el id del usuario actual (FK)
 			post.save() # ahora si guardo la publicacion
 
 			return HttpResponseRedirect(reverse('web:index'))
