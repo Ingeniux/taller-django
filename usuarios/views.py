@@ -7,13 +7,12 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 
-def index(request):
-    usuario_id = request.user
-    posts = Post.objects.filter(usuario=usuario_id).order_by('-fecha')
-    argumentos = {'title' : usuario_id, 'posts': posts, }
-    return render_to_response('usuario.html', argumentos, context_instance=RequestContext(request))
 
-
+"""
+Esta funcion pienso que es mejor ponerla como clase,
+para explicar lo de las vistas-form como clases, puesto que ya hay un form como funcion.
+la idea es que si se crea el usuario se pueda mostrar un mensaje al usuario, o si hay error tambien.
+"""
 from usuarios.forms import UserForm
 def registro_u(request):
     if request.POST:
@@ -24,6 +23,10 @@ def registro_u(request):
     else:
         return HttpResponseRedirect(reverse('web:index'))
 
+
+"""
+Fin
+"""
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -50,12 +53,3 @@ from django.contrib.auth.decorators import login_required
 def logout_u(request):
     logout(request)
     return HttpResponseRedirect(reverse('web:index'))
-
-
-def timeline_usuario(request, user_name):
-
-    usuario = User.objects.get(username=user_name)
-    print (usuario.username)
-    posts = Post.objects.filter(usuario=usuario.id).order_by('-fecha')
-    argumentos = {'title' : usuario.username, 'id_user': usuario.id, 'posts': posts  }
-    return render_to_response('usuario.html', argumentos, context_instance=RequestContext(request))
