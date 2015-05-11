@@ -14,14 +14,24 @@ para explicar lo de las vistas-form como clases, puesto que ya hay un form como 
 la idea es que si se crea el usuario se pueda mostrar un mensaje al usuario, o si hay error tambien.
 """
 from usuarios.forms import UserForm
-def registro_u(request):
-    if request.POST:
-        form = UserForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return HttpResponseRedirect(reverse('web:index'))
-    else:
-        return HttpResponseRedirect(reverse('web:index'))
+from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse_lazy
+
+class Registro_User(CreateView):
+    form_class = UserForm
+    template_name = 'Nosuccess.html'
+    success_url = reverse_lazy('web:success')
+
+    
+        
+# def registro_u(request):
+#     if request.POST:
+#         form = UserForm(request.POST)
+#         if form.is_valid:
+#             form.save()
+#             return HttpResponseRedirect(reverse('web:index'))
+#     else:
+#         return HttpResponseRedirect(reverse('web:index'))
 
 
 """
