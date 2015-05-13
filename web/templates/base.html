@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+{{ messages }}
 
 	{% if not user.is_authenticated %}
 
@@ -108,13 +108,11 @@
 								<ul>
 									{% for item in posts%}
 									<li>
-
-
-									{{item.contenido}}
-									{{item.fecha}}
-									{{item.usuario}}
+										{{item.contenido}}
+										<br>
+										<small>{{item.usuario}} - {{item.fecha}}</small>	
+									</li>
 									{%endfor%}
-								</li>
 								</ul>
 
 
